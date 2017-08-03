@@ -1,0 +1,120 @@
+@import url("//fonts.googleapis.com/earlyaccess/nanumgothic.css")
+
+.calendar_wrap
+
+  position: relative
+  min-width: 270px
+  min-height: 250px
+  width: 100%
+  background: #e9edf3
+
+  table
+    border-collapse: collapse
+
+  .blind
+    display: none
+    position: absolute
+    top: 0
+    left: 0
+    width: 1px
+    height: 1px
+    font-size: 0
+    line-height: 0
+    overflow: hidden
+
+  .calendar_head
+    background-color: #4d5567
+
+    .calendar_title
+      position: relative
+      margin: 0 50px
+      text-align: center
+
+      span
+        color: #ffffff
+        font-family: 'Nanum Gothic', sans-serif
+        font-size: 20px
+        font-weight: 400
+        line-height: 51px
+
+    .prev_btn,
+    .next_btn
+      position: absolute
+      top: 13px
+      width: 25px
+      height: 25px
+      cursor: pointer
+
+      span
+        display: block
+        height: 100%
+        background-image: url("./btn_img.png")
+        background-repeat: no-repeat
+        text-indent: -9999em
+
+    .prev_btn
+      left: 11px
+
+      span
+        background-position: 0 0
+
+    .next_btn
+      right: 11px
+
+      span
+        background-position: -25px 0
+
+  .calendar_content_wrap
+    padding: 10px 20px 20px
+
+    .calendar_content
+      width: 100%
+      height: 100%
+
+      thead
+        th
+          width: 14.285%
+          text-align: center
+
+          span
+            color: #4d5567
+            font-family: "Nanum Gothic", sans-serif
+            font-size: 13px
+            line-height: 50px
+
+      tbody
+        border-top: 1px solid #d0d5de
+        border-left: 1px solid #d0d5de
+
+        td
+          padding-top: 5%
+          padding-bottom: 5%
+          font-family: "Nanum Gothic", sans-serif
+          font-size: 13px
+          border-right: 1px solid #d0d5de
+          border-bottom: 1px solid #d0d5de
+          text-align: center
+
+          &.this_month
+            background-color: #ffffff
+
+          &.prev_month,
+          &.next_month
+            opacity: 0.2
+
+          &.today
+            background-color: #fff4c3
+
+          .sat
+            color: #3b93ed
+
+          .sun
+            color: #ff244e
+
+          .moveday
+            padding: 6px 8px
+            color: #ffffff
+            background-color: #ff7f81
+            -webkit-border-radius: 5px
+            -moz-border-radius: 5px
+            border-radius: 5px
