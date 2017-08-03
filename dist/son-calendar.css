@@ -24,7 +24,7 @@
       text-align: center; }
       .calendar_wrap .calendar_head .calendar_title span {
         color: #ffffff;
-        font-family: 'Nanum Gothic', sans-serif;
+        font-family: "Nanum Gothic", sans-serif;
         font-size: 20px;
         font-weight: 400;
         line-height: 51px; }
@@ -51,7 +51,7 @@
       .calendar_wrap .calendar_head .next_btn span {
         background-position: -25px 0; }
   .calendar_wrap .calendar_content_wrap {
-    padding: 10px 20px 20px; }
+    padding: 10px 20px 40px 20px; }
     .calendar_wrap .calendar_content_wrap .calendar_content {
       width: 100%;
       height: 100%; }
@@ -85,9 +85,25 @@
           .calendar_wrap .calendar_content_wrap .calendar_content tbody td .sun {
             color: #ff244e; }
           .calendar_wrap .calendar_content_wrap .calendar_content tbody td .moveday {
-            padding: 6px 8px;
+            padding: 12%;
             color: #ffffff;
-            background-color: #ff7f81;
             -webkit-border-radius: 5px;
             -moz-border-radius: 5px;
             border-radius: 5px; }
+  .calendar_wrap .moveday_bg {
+    background-color: #ff7f81; }
+  .calendar_wrap .po_right {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    font-size: 11px;
+    color: #4d5567;
+    font-family: "Nanum Gothic", sans-serif; }
+    .calendar_wrap .po_right .check_moveday {
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+      border-radius: 3px;
+      position: relative;
+      top: 2px;
+      margin-right: 6px; }

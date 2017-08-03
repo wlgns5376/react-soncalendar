@@ -22807,6 +22807,12 @@ var Body = function (_Component) {
                             return _react2.default.createElement(Row, { key: 'row' + idx, idx: idx, days: day });
                         })
                     )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'po_right' },
+                    _react2.default.createElement('span', { className: 'check_moveday moveday_bg' }),
+                    '\uC190 \uC5C6\uB294 \uB0A0'
                 )
             );
         }
@@ -22896,7 +22902,7 @@ var Cell = function (_Component) {
             var num = lunar.date.substr(-1, 1);
 
             if (num == 9 || num == 0) {
-                dayClassNames.push('moveday');
+                dayClassNames.push('moveday moveday_bg');
             }
 
             return _react2.default.createElement(

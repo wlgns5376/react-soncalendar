@@ -120,6 +120,10 @@ class Body extends Component {
                     })}
                     </tbody>
                 </table>
+                <div className="po_right">
+                    <span className="check_moveday moveday_bg" />
+                    손 없는 날
+                </div>
             </div>
         );
     }

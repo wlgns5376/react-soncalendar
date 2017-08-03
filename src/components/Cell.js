@@ -36,7 +36,7 @@ class Cell extends Component {
         let num = lunar.date.substr(-1, 1);
 
         if (num == 9 || num == 0) {
-            dayClassNames.push('moveday');
+            dayClassNames.push('moveday moveday_bg');
         }
 
         return (

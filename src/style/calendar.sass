@@ -1,3 +1,5 @@
+@import "theme"
+
 @import url("//fonts.googleapis.com/earlyaccess/nanumgothic.css")
 
 .calendar_wrap
@@ -6,7 +8,7 @@
   min-width: 270px
   min-height: 250px
   width: 100%
-  background: #e9edf3
+  background: $base-bg
 
   table
     border-collapse: collapse
@@ -23,7 +25,7 @@
     overflow: hidden
 
   .calendar_head
-    background-color: #4d5567
+    background-color: $head-bg
 
     .calendar_title
       position: relative
@@ -31,8 +33,8 @@
       text-align: center
 
       span
-        color: #ffffff
-        font-family: 'Nanum Gothic', sans-serif
+        color: $head-color
+        font-family: $base-font-family
         font-size: 20px
         font-weight: 400
         line-height: 51px
@@ -65,7 +67,7 @@
         background-position: -25px 0
 
   .calendar_content_wrap
-    padding: 10px 20px 20px
+    padding: 10px 20px 40px 20px
 
     .calendar_content
       width: 100%
@@ -77,44 +79,63 @@
           text-align: center
 
           span
-            color: #4d5567
-            font-family: "Nanum Gothic", sans-serif
+            color: $week-color
+            font-family: $base-font-family
             font-size: 13px
             line-height: 50px
 
       tbody
-        border-top: 1px solid #d0d5de
-        border-left: 1px solid #d0d5de
+        border-top: 1px solid $calendar-border-color
+        border-left: 1px solid $calendar-border-color
 
         td
           padding-top: 5%
           padding-bottom: 5%
           font-family: "Nanum Gothic", sans-serif
           font-size: 13px
-          border-right: 1px solid #d0d5de
-          border-bottom: 1px solid #d0d5de
+          border-right: 1px solid $calendar-border-color
+          border-bottom: 1px solid $calendar-border-color
           text-align: center
 
           &.this_month
-            background-color: #ffffff
+            background-color: $day-bg
 
           &.prev_month,
           &.next_month
             opacity: 0.2
 
           &.today
-            background-color: #fff4c3
+            background-color: $today-bg
 
           .sat
-            color: #3b93ed
+            color: $sat-color
 
           .sun
-            color: #ff244e
+            color: $sun-color
 
           .moveday
-            padding: 6px 8px
-            color: #ffffff
-            background-color: #ff7f81
+            padding: 12%
+            color: $moveday-color
             -webkit-border-radius: 5px
             -moz-border-radius: 5px
             border-radius: 5px
+
+  .moveday_bg
+    background-color: $moveday-bg
+
+  .po_right
+    position: absolute
+    right: 20px
+    bottom: 20px
+    font-size: 11px
+    color: $info-color
+    font-family: $base-font-family
+
+    .check_moveday
+      width: 10px
+      height: 10px
+      display: inline-block
+      border-radius: 3px
+      position: relative
+      top: 2px
+      margin-right: 6px
