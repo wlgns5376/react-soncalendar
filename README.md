@@ -1,4 +1,4 @@
-# soncalendar
+# react-soncalendar
 한국의 손 없는 날 달력입니다.
 
 2016년 1월 ~ 2025년 12월까지 지원
@@ -98,3 +98,6 @@ var calendar = new SonCalendar('calendar');
     </div>
 </div>
 ```
+
+## License
+MIT
