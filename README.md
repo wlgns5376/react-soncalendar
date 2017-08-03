@@ -3,7 +3,7 @@
 
 2016년 1월 ~ 2025년 12월까지 지원
 
-### Css
+### CSS
 
 ```html
 <link rel="stylesheet" href="dist/son-calendar.min.css">
@@ -24,6 +24,16 @@ var calendar = new SonCalendar('calendar');
 </script>
 ```
 
+set option
+
+```html
+<div id="calendar"></div>
+<script type="text/javascript">
+var calendar = new SonCalendar('calendar', {
+        locale: 'kr'
+    });
+</script>
+```
 ### Calendar source
 
 ```html
