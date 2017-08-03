@@ -62,7 +62,7 @@ class Body extends Component {
         let prevStartDate = prev.last_day - prev.last_week;
         let total = current.last_day + current.first_week;
         
-        if (total < 35) {
+        if (total <= 35) {
             total = 35;
         } else {
             total = 42;

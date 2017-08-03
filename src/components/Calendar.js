@@ -74,7 +74,7 @@ class Calendar extends Component {
 
         let date = getDate(state.year, state.month, state.day);
 
-        console.log(state.year, state.month);
+        //console.log(state.year, state.month);
 
         return (
             <div className="calendar_wrap">

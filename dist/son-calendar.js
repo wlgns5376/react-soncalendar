@@ -22521,7 +22521,7 @@ var Calendar = function (_Component) {
 
             var date = getDate(state.year, state.month, state.day);
 
-            console.log(state.year, state.month);
+            //console.log(state.year, state.month);
 
             return _react2.default.createElement(
                 'div',
@@ -22734,7 +22734,7 @@ var Body = function (_Component) {
             var prevStartDate = prev.last_day - prev.last_week;
             var total = current.last_day + current.first_week;
 
-            if (total < 35) {
+            if (total <= 35) {
                 total = 35;
             } else {
                 total = 42;
