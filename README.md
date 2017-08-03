@@ -105,6 +105,10 @@ var calendar = new SonCalendar('calendar', {
                 </tr>
             </tbody>
         </table>
+        <div class="po_right">
+            <span class="check_moveday moveday_bg"></span>
+            손 없는 날
+        </div>
     </div>
 </div>
 ```
