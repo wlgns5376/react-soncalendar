@@ -39,7 +39,7 @@
       .calendar_wrap .calendar_head .next_btn span {
         display: block;
         height: 100%;
-        background-image: url(/assets/imgs/btn_img.png);
+        background-image: url(./imgs/btn_img.png);
         background-repeat: no-repeat;
         text-indent: -9999em; }
     .calendar_wrap .calendar_head .prev_btn {

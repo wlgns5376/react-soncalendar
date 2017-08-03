@@ -52,7 +52,7 @@ module.exports = {
             {
                 test: /\.png$/,
                 exclude: /node_modules/,
-                use: ['file-loader?name=imgs/[name].[ext]']
+                use: ['file-loader?name=imgs/[name].[ext]&publicPath=./']
             }
         ]
     }
