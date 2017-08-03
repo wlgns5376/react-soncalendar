@@ -3694,7 +3694,7 @@ function zeroFill(num) {
 
 function convert(year, month, day) {
     
-    let lunar = lunars[year+''+zeroFill(month)+''+zeroFill(day)];
+    let lunar = lunars[year+''+zeroFill(month)+''+zeroFill(day)] || '';
 
     return {
         date: lunar,

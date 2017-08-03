@@ -1,4 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["SonCalendar"] = factory();
+	else
+		root["SonCalendar"] = factory();
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -9764,9 +9774,15 @@ var _Calendar2 = _interopRequireDefault(_Calendar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom2.default.render(_react2.default.createElement(_Calendar2.default, null), document.getElementById('root')); /**
-                                                                                                                      * Created by Administrator on 2017-07-28.
-                                                                                                                      */
+module.exports = function (element, options) {
+    if (typeof element == 'string') {
+        element = document.getElementById(element);
+    }
+
+    return _reactDom2.default.render(_react2.default.createElement(_Calendar2.default, options), element);
+}; /**
+    * Created by Administrator on 2017-07-28.
+    */
 
 /***/ }),
 /* 83 */
@@ -22432,37 +22448,99 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
 
+var WEEKS = {
+    en: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    kr: ['일', '월', '화', '수', '목', '금', '토']
+};
+
+function getDate(year, month, day) {
+    var date = new Date();
+
+    if (year) {
+        date.setFullYear(year, month - 1, day || 1);
+    }
+
+    return date;
+}
+
 var Calendar = function (_Component) {
     _inherits(Calendar, _Component);
 
-    function Calendar() {
+    function Calendar(props) {
         _classCallCheck(this, Calendar);
 
-        return _possibleConstructorReturn(this, (Calendar.__proto__ || Object.getPrototypeOf(Calendar)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Calendar.__proto__ || Object.getPrototypeOf(Calendar)).call(this, props));
+
+        var date = getDate(props.year, props.month, props.day);
+
+        _this.state = {
+            year: date.getFullYear(),
+            month: date.getMonth() + 1,
+            day: date.getDate()
+        };
+
+        _this.handlePrevMonth = _this.handlePrevMonth.bind(_this);
+        _this.handleNextMonth = _this.handleNextMonth.bind(_this);
+        return _this;
     }
 
     _createClass(Calendar, [{
+        key: 'handlePrevMonth',
+        value: function handlePrevMonth() {
+            if (this.state.year == 2016 && this.state.month == 1) {
+                return false;
+            }
+            var date = getDate(this.state.year, this.state.month - 1, this.state.day);
+
+            this.setState({
+                year: date.getFullYear(),
+                month: date.getMonth() + 1,
+                day: date.getDate()
+            });
+        }
+    }, {
+        key: 'handleNextMonth',
+        value: function handleNextMonth() {
+
+            if (this.state.year == 2025 && this.state.month == 12) {
+                return false;
+            }
+
+            var date = getDate(this.state.year, this.state.month + 1, this.state.day);
+
+            this.setState({
+                year: date.getFullYear(),
+                month: date.getMonth() + 1,
+                day: date.getDate()
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
-            var props = this.props;
+            var state = this.state;
 
-            var date = new Date();
+            var date = getDate(state.year, state.month, state.day);
 
-            if (props.year) {
-                date.setFullYear(props.year, props.month - 1, props.day || 1);
-            }
+            console.log(state.year, state.month);
 
             return _react2.default.createElement(
                 'div',
                 { className: 'calendar_wrap' },
-                _react2.default.createElement(_Header2.default, null),
-                _react2.default.createElement(_Body2.default, { date: date })
+                _react2.default.createElement(_Header2.default, { date: date, onPrevMonth: this.handlePrevMonth, onNextMonth: this.handleNextMonth }),
+                _react2.default.createElement(_Body2.default, { weeks: WEEKS[this.props.locale], date: date })
             );
         }
     }]);
 
     return Calendar;
 }(_react.Component);
+
+Calendar.defaultProps = {
+    year: null,
+    month: null,
+    day: null,
+    locale: 'en'
+};
 
 exports.default = Calendar;
 
@@ -22504,14 +22582,28 @@ var Header = function (_Component) {
     }
 
     _createClass(Header, [{
+        key: "handlePrev",
+        value: function handlePrev(e) {
+            this.props.onPrevMonth();
+        }
+    }, {
+        key: "handleNext",
+        value: function handleNext(e) {
+            this.props.onNextMonth();
+        }
+    }, {
         key: "render",
         value: function render() {
+            var date = this.props.date;
+            var year = date.getFullYear();
+            var month = parseInt(date.getMonth()) + 1;
+
             return _react2.default.createElement(
                 "div",
                 { className: "calendar_head" },
                 _react2.default.createElement(
                     "a",
-                    { className: "prev_btn" },
+                    { className: "prev_btn", onClick: this.handlePrev.bind(this) },
                     _react2.default.createElement(
                         "span",
                         null,
@@ -22524,12 +22616,12 @@ var Header = function (_Component) {
                     _react2.default.createElement(
                         "span",
                         null,
-                        "2017.08"
+                        year + '.' + month
                     )
                 ),
                 _react2.default.createElement(
                     "a",
-                    { className: "next_btn" },
+                    { className: "next_btn", onClick: this.handleNext.bind(this) },
                     _react2.default.createElement(
                         "span",
                         null,
@@ -22640,10 +22732,13 @@ var Body = function (_Component) {
             var next = CDate(current.year, current.month + 1, current.day);
 
             var prevStartDate = prev.last_day - prev.last_week;
-            var total = Math.min(current.last_day + current.first_week, 35);
-            total = Math.max(total, 42);
+            var total = current.last_day + current.first_week;
 
-            console.log('prev state date', prevStartDate);
+            if (total < 35) {
+                total = 35;
+            } else {
+                total = 42;
+            }
 
             var days = [];
             for (var i = 0, j = -1; i < total; ++i) {
@@ -22692,41 +22787,17 @@ var Body = function (_Component) {
                         _react2.default.createElement(
                             'tr',
                             null,
-                            _react2.default.createElement(
-                                'th',
-                                { scope: 'col' },
-                                'Sun'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                { scope: 'col' },
-                                'Mon'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                { scope: 'col' },
-                                'Tue'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                { scope: 'col' },
-                                'Wed'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                { scope: 'col' },
-                                'Thu'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                { scope: 'col' },
-                                'Fri'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                { scope: 'col' },
-                                'Sat'
-                            )
+                            this.props.weeks.map(function (week, idx) {
+                                return _react2.default.createElement(
+                                    'th',
+                                    { scope: 'col', key: 'week' + idx },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        week
+                                    )
+                                );
+                            })
                         )
                     ),
                     _react2.default.createElement(
@@ -22743,6 +22814,10 @@ var Body = function (_Component) {
 
     return Body;
 }(_react.Component);
+
+Body.defaultProps = {
+    locale: 'en'
+};
 
 exports.default = Body;
 
@@ -22803,6 +22878,12 @@ var Cell = function (_Component) {
                 classNames.push(date.type + '_month');
             }
 
+            var today = new Date();
+
+            if (today.getFullYear() == date.year && today.getMonth() == date.month - 1 && today.getDate() == date.day) {
+                classNames.push('today');
+            }
+
             var dayClassNames = [];
 
             if (week == 0) {
@@ -22811,16 +22892,21 @@ var Cell = function (_Component) {
                 dayClassNames.push('sat');
             }
 
-            console.log((0, _lunars2.default)(date.year, date.month, date.day));
+            var lunar = (0, _lunars2.default)(date.year, date.month, date.day);
+            var num = lunar.date.substr(-1, 1);
+
+            if (num == 9 || num == 0) {
+                dayClassNames.push('moveday');
+            }
 
             return _react2.default.createElement(
                 'td',
                 { className: classNames.join(' ') },
-                _react2.default.createElement(
+                date.type == 'current' ? _react2.default.createElement(
                     'span',
                     { className: dayClassNames.join(' ') },
                     date.day
-                )
+                ) : date.day
             );
         }
     }]);
@@ -26536,7 +26622,14 @@ function zeroFill(num) {
 
 function convert(year, month, day) {
 
-    return lunars[year + '' + zeroFill(month) + '' + zeroFill(day)];
+    var lunar = lunars[year + '' + zeroFill(month) + '' + zeroFill(day)] || '';
+
+    return {
+        date: lunar,
+        year: parseInt(lunar.substr(0, 4)),
+        month: parseInt(lunar.substr(4, 2)),
+        day: parseInt(lunar.substr(6, 2))
+    };
 }
 
 exports.default = convert;
@@ -26549,3 +26642,4 @@ exports.default = convert;
 
 /***/ })
 /******/ ]);
+});

@@ -6,4 +6,10 @@ import ReactDOM from 'react-dom';
 
 import Calendar from './components/Calendar';
 
-ReactDOM.render(<Calendar/>, document.getElementById('root'));
+module.exports = function (element, options) {
+    if (typeof element == 'string') {
+        element = document.getElementById(element);
+    }
+    
+    return ReactDOM.render(<Calendar {...options} />, element);
+};

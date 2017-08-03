@@ -5,7 +5,7 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var extractText = new ExtractTextPlugin('calendar.css', {
+var extractText = new ExtractTextPlugin('son-calendar.css', {
     allChunks: true
 });
 
@@ -13,9 +13,11 @@ module.exports = {
     entry: './src/index.js',
 
     output: {
-        filename: 'bundle.js',
+        filename: 'son-calendar.js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/assets/'
+        publicPath: '/assets/',
+        libraryTarget: 'umd',
+        library: 'SonCalendar'
     },
 
     devServer: {

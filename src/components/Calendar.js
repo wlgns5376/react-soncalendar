@@ -42,14 +42,30 @@ class Calendar extends Component {
     }
 
     handlePrevMonth() {
+        if (this.state.year == 2016 && this.state.month == 1) {
+            return false;
+        }
+        let date = getDate(this.state.year, this.state.month - 1, this.state.day);
+
         this.setState({
-            month: this.state.month-1
+            year: date.getFullYear(),
+            month: date.getMonth() + 1,
+            day: date.getDate()
         });
     }
 
     handleNextMonth() {
+
+        if (this.state.year == 2025 && this.state.month == 12) {
+            return false;
+        }
+
+        let date = getDate(this.state.year, this.state.month + 1, this.state.day);
+
         this.setState({
-            month: this.state.month+1
+            year: date.getFullYear(),
+            month: date.getMonth() + 1,
+            day: date.getDate()
         });
     }
 
