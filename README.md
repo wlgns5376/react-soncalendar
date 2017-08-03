@@ -108,6 +108,8 @@ var calendar = new SonCalendar('calendar', {
     </div>
 </div>
 ```
+## Demo
+https://wlgns5376.github.io/demo/calendar.html
 
 ## License
 MIT
