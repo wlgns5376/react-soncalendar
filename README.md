@@ -47,15 +47,15 @@ var calendar = new SonCalendar('calendar', {
         <table class="calendar_content">
             <caption class="blind">손 없는 날 달력</caption>
             <thead>
-            <tr>
-                <th scope="col"><span>Sun</span></th>
-                <th scope="col"><span>Mon</span></th>
-                <th scope="col"><span>Tue</span></th>
-                <th scope="col"><span>Wed</span></th>
-                <th scope="col"><span>Thu</span></th>
-                <th scope="col"><span>Fri</span></th>
-                <th scope="col"><span>Sat</span></th>
-            </tr>
+                <tr>
+                    <th scope="col"><span>Sun</span></th>
+                    <th scope="col"><span>Mon</span></th>
+                    <th scope="col"><span>Tue</span></th>
+                    <th scope="col"><span>Wed</span></th>
+                    <th scope="col"><span>Thu</span></th>
+                    <th scope="col"><span>Fri</span></th>
+                    <th scope="col"><span>Sat</span></th>
+                </tr>
             </thead>
             <tbody>
                 <tr>
